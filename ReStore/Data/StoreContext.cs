@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ReStore.Entities;
 using ReStoreAPI.Entities;
 
 namespace ReStoreAPI.Data
@@ -10,5 +11,6 @@ namespace ReStoreAPI.Data
         }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
     }
 }
