@@ -14,14 +14,14 @@ export default function ProductDetails(){
     const {basket, status} = useAppSelector(state => state.basket);
     const dispatch = useAppDispatch();
     const {id} = useParams<{id: string}>();
-    const product = useAppSelector(state => productSelectors.selectById(state, id));
+    const product = useAppSelector(state => productSelectors.selectById(state, id!));
     const {status: productStatus} = useAppSelector(state => state.catalog);
     const [quantity, setQuantity] = useState(0);
     const item = basket?.items.find(i => i.productId === product?.id);
 
     useEffect(() => {
         if(item) setQuantity(item.quantity);
-        if(!product) dispatch(fetchProductAsync(parseInt(id)));
+        if(!product && id) dispatch(fetchProductAsync(parseInt(id)));
     }, [id, item, dispatch, product])
 
     function handleInputChange(event: any){
