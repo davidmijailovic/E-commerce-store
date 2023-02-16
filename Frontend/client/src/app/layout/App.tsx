@@ -1,4 +1,3 @@
-import { CssBaseline, Container, createTheme, ThemeProvider } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -9,6 +8,8 @@ import LoadingComponent from "./LoadingComponent";
 import { useAppDispatch } from "../store/configureStore";
 import { fetchBasketAsync } from "../../features/basket/basketSlice";
 import { fetchCurrentUser } from "../../features/account/accountSlice";
+import { ThemeProvider } from "@emotion/react";
+import { CssBaseline, Container, createTheme } from "@mui/material";
 
 
 function App() {
