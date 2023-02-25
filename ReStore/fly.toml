@@ -1,0 +1,43 @@
+# fly.toml file generated for skistore on 2023-02-25T10:30:25+01:00
+
+app = "skistore"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[build]
+  image = "davidmijailovic/restore:latest"
+
+[env]
+  ASPNETCORE_URLS="http://+:8080"
+  StripeSettings__PublishableKey="pk_test_51MdV8hBczCTFQsayV3hZkvz2QWadXtyUwwtBXg1VP6kDlvpx69ADsTBxQKLKvDYrLXEYx4okaBpRI8WR83naSgTT00nHUkT9ts"
+  Cloudinary__CloudName="dudd1e3xu"
+  Cloudinary__ApiKey="183651579276612"
+[experimental]
+  auto_rollback = true
+
+[[services]]
+  http_checks = []
+  internal_port = 8080
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [[services.tcp_checks]]
+    grace_period = "1s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"
