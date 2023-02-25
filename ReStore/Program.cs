@@ -6,6 +6,7 @@ using Microsoft.OpenApi.Models;
 using ReStore.Data;
 using ReStore.Entities;
 using ReStore.Middleware;
+using ReStore.RequestHelpers;
 using ReStore.Services;
 using ReStoreAPI.Data;
 using System.Text;
@@ -15,6 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container 
 
 builder.Services.AddControllers();
+builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "ReStoreAPI", Version = "v1" });
@@ -95,6 +97,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization();
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<PaymentService>();
+builder.Services.AddScoped<ImageService>();
 
 var app = builder.Build();
 
