@@ -6,7 +6,8 @@ import { RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './app/store/configureStore';
 import { router } from './app/router/Routes';
-import React from 'react';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 export const history = createBrowserHistory();
 const root = ReactDOM.createRoot(

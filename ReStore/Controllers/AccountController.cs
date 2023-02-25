@@ -80,7 +80,7 @@ namespace ReStore.Controllers
             {
                 Email = user.Email,
                 Token = await _tokenService.GenerateToken(user),
-                Basket = userBasket.MapBasketToDto()
+                Basket = userBasket?.MapBasketToDto()
             };
         }
 
